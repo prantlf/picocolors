@@ -17,6 +17,11 @@ console.log(
 - TypeScript type declarations included.
 - [`NO_COLOR`](https://no-color.org/) friendly.
 
+This is a fork of the original project with the following changes:
+
+* Include native ESM output, which allows named imports [#60](https://github.com/alexeyraspopov/picocolors/pull/60).
+* Add benchmarks for `chalk` 5 and `yoctocolors` [#61](https://github.com/alexeyraspopov/picocolors/pull/61).
+
 ## Motivation
 
 With `picocolors` we are trying to draw attention to the `node_modules` size
