@@ -1,3 +1,5 @@
+benchmarks/chalk5.js
+benchmarks/yoctocolors.js
 node_modules
 picocolors.mjs
 tests/types.mjs
