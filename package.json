@@ -17,7 +17,7 @@
   "sideEffects": false,
   "description": "The tiniest and the fastest library for terminal output formatting with ANSI colors",
   "scripts": {
-    "build": "node build-esm.mjs",
+    "build": "node build-esm.mjs && tsc --module esnext tests/types.mts",
     "test": "node tests/test.js"
   },
   "files": [
@@ -45,6 +45,7 @@
     "mitata": "^1.0.32",
     "nanocolors": "^0.2.13",
     "prettier": "^3.4.2",
+    "typescript": "^5.7.3",
     "yoctocolors": "^2.1.1"
   },
   "prettier": {
