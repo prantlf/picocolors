@@ -17,9 +17,10 @@
   "sideEffects": false,
   "description": "The tiniest and the fastest library for terminal output formatting with ANSI colors",
   "scripts": {
-    "build": "node build-esm.mjs && tsc --module esnext tests/types.mts",
+    "build": "node build-esm.mjs",
     "build-benchmarks": "node print-chalk5.mjs | esbuild --outfile=benchmarks/chalk5.js --bundle --platform=node && node print-yoctocolors.mjs | esbuild --outfile=benchmarks/yoctocolors.js --bundle --platform=node",
-    "test": "node tests/test.js"
+    "pretest": "tsc --module esnext tests/types.mts",
+    "test": "node tests/test.js && node tests/esm.mjs && node tests/types.mjs"
   },
   "files": [
     "picocolors.*",
