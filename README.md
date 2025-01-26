@@ -58,48 +58,48 @@ Library loading time:
 
 ```diff
 $ node ./benchmarks/loading.js
-  chalk5         7.713 ms
-  chalk4         5.372 ms
-  cli-color     32.428 ms
-  ansi-colors    1.420 ms
-  kleur          2.345 ms
-  kleur/colors   0.960 ms
-  colorette      0.887 ms
-  nanocolors     0.708 ms
-  yoctocolors    0.679 ms
-+ picocolors     0.388 ms
+  chalk5         5.196 ms
+  chalk4         5.327 ms
+  cli-color     32.755 ms
+  ansi-colors    1.467 ms
+  kleur          2.042 ms
+  kleur/colors   1.017 ms
+  colorette      0.943 ms
+  nanocolors     0.737 ms
+  yoctocolors    0.951 ms
++ picocolors     0.458 ms
 ```
 
 Benchmark for simple use case:
 
 ```diff
 $ node ./benchmarks/simple.js
-  chalk5         26,287,893 ops/sec
-  chalk4         25,221,564 ops/sec
-  cli-color       1,412,525 ops/sec
-  ansi-colors     6,463,786 ops/sec
-  kleur          26,363,857 ops/sec
-  kleur/colors   52,166,754 ops/sec
-  colorette      50,574,214 ops/sec
-  nanocolors     51,646,373 ops/sec
-  yoctocolors   195,458,649 ops/sec
-+ picocolors     50,840,902 ops/sec
+  chalk5         19,221,813 ops/sec
+  chalk4         19,637,847 ops/sec
+  cli-color       1,242,196 ops/sec
+  ansi-colors     6,002,738 ops/sec
+  kleur          20,288,805 ops/sec
+  kleur/colors   32,498,780 ops/sec
+  colorette      32,402,910 ops/sec
+  nanocolors     33,080,935 ops/sec
+  yoctocolors    33,910,355 ops/sec
++ picocolors     34,393,391 ops/sec
 ```
 
 Benchmark for complex use cases:
 
 ```diff
 $ node ./benchmarks/complex.js
-  chalk5          1,178,597 ops/sec
-  chalk4          1,215,094 ops/sec
-  cli-color         152,419 ops/sec
-  ansi-colors       558,016 ops/sec
-  kleur           1,251,816 ops/sec
-  kleur/colors    1,523,289 ops/sec
-  colorette       1,813,436 ops/sec
-  nanocolors      1,682,924 ops/sec
-  yoctocolors     4,424,045 ops/sec
-+ picocolors      2,747,818 ops/sec
+  chalk5         1,183,783 ops/sec
+  chalk4         1,188,633 ops/sec
+  cli-color        137,948 ops/sec
+  ansi-colors      566,511 ops/sec
+  kleur          1,279,185 ops/sec
+  kleur/colors   1,470,000 ops/sec
+  colorette      1,750,069 ops/sec
+  nanocolors     1,568,092 ops/sec
+  yoctocolors    1,261,661 ops/sec
++ picocolors     2,771,518 ops/sec
 ```
 
 ## Usage
