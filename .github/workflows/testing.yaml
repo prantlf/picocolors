@@ -22,9 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run build
-      - run: node tests/test.js
-      - run: node tests/esm.mjs
-      - run: node tests/types.mjs
+      - run: npm test
   legacy:
     name: Node v${{ matrix.node-version }} (Legacy)
     runs-on: ubuntu-latest
