@@ -1,8 +1,8 @@
-import { readFile } from "node:fs/promises"
+import { readFile, writeFile } from "node:fs/promises"
 
-let script = await readFile("node_modules/yoctocolors/index.js", "utf8")
+let base = await readFile("node_modules/yoctocolors/base.js", "utf8")
 
-script = script.replace("import tty from 'node:tty'", "const tty = require('node:tty')")
+base = base.replace("import tty from 'node:tty'", "const tty = require('node:tty')")
 
 // let lines = script.split(/\r?\n/)
 // lines.splice(0, 4)
@@ -15,6 +15,10 @@ script = script.replace("import tty from 'node:tty'", "const tty = require('node
 //   process.platform === "win32" ||
 //   (require != null && require("tty").isatty(1) && env.TERM !== "dumb") ||
 //   "CI" in env);`)
-// script = lines.join("\n")
+// base = lines.join("\n")
 
-process.stdout.write(script);
+await writeFile("base.js", base);
+
+let index = await readFile("node_modules/yoctocolors/index.js", "utf8")
+
+process.stdout.write(index);

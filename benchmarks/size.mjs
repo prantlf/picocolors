@@ -5,7 +5,7 @@ import { dirname } from "node:path"
 console.table({
   picocolors: build(`export { default as picocolors } from "../picocolors.js"`),
   colorette: build(`export * as colorette from "colorette"`),
-  "chalk v4": build(`export { default as chalk } from "chalk"`),
+  "chalk v4": build(`export { default as chalk } from "chalk4"`),
   "chalk v5": build(`export * as chalk from "chalk5"`),
   kleur: build(`export { default as kleur } from "kleur"`),
   "kleur/colors": build(`export * as kleurColors from "kleur/colors"`),

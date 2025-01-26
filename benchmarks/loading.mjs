@@ -77,7 +77,7 @@ group(() => {
 	})
 	bench("yoctocolors", () => compile(codeY, contextY))
 
-	let codeCh = build(`let chalk = require("chalk"); console.log(chalk != null);`)
+	let codeCh = build(`let chalk = require("chalk4"); console.log(chalk != null);`)
 	let contextCh = createContext({
 		require: createRequire(filename),
 		process: { env: { FORCE_COLOR: 1 } },
