@@ -43,5 +43,9 @@ let yoctocolors = await import("./yoctocolors.js")
 showTime("yoctocolors")
 
 before = performance.now()
-let picocolors = await import("../picocolors.js")
-showTime("picocolors")
+let picocolorsUpstream = await import("picocolors-upstream")
+showTime("picocolors-upstream")
+
+before = performance.now()
+let picocolorsFork = await import("../picocolors.js")
+showTime("picocolors-fork")

@@ -13,7 +13,8 @@ let chalk5 = require("./chalk5").default
 let chalk4 = require("chalk4")
 let ansi = require("ansi-colors")
 let cliColor = require("cli-color")
-let picocolors = require("../picocolors.js")
+let picocolorsFork = require("../picocolors.js")
+let picocolorsUpstream = require("picocolors-upstream")
 let nanocolors = require("nanocolors")
 let yoctocolors = require("./yoctocolors")
 
@@ -29,7 +30,8 @@ console.log(chalk5.green("chalk5"))
 console.log(chalk4.green("chalk4"))
 console.log(ansi.green("ansi"))
 console.log(cliColor.green("cliColor"))
-console.log(picocolors.green("picocolors"))
+console.log(picocolorsFork.green("picocolors-fork"))
+console.log(picocolorsUpstream.green("picocolors-upstream"))
 console.log(nanocolors.green("nanocolors"))
 console.log(yoctocolors.green("yoctocolors"))
 
@@ -64,17 +66,20 @@ suite
 	.add("yoctocolors", () => {
 		out = yoctocolors.red("Add plugin to use time limit")
 	})
-	.add("picocolors", () => {
-		out = picocolors.red("Add plugin to use time limit")
+	.add("picocolors-upstream", () => {
+		out = picocolorsUpstream.red("Add plugin to use time limit")
+	})
+	.add("picocolors-fork", () => {
+		out = picocolorsFork.red("Add plugin to use time limit")
 	})
 	.on("cycle", event => {
-		let prefix = event.target.name === "picocolors" ? "+ " : "  "
+		let prefix = event.target.name === "picocolors-fork" ? "+ " : "  "
 		let name = event.target.name.padEnd("kleur/colors  ".length)
-		let hz = formatNumber(event.target.hz.toFixed(0)).padStart(11)
-		process.stdout.write(`${prefix}${name}${picocolors.bold(hz)} ops/sec\n`)
+		let hz = formatNumber(event.target.hz.toFixed(0)).padStart(20)
+		process.stdout.write(`${prefix}${name}${picocolorsFork.bold(hz)} ops/sec\n`)
 	})
 	.on("error", event => {
-		process.stderr.write(picocolors.red(event.target.error.toString()) + "\n")
+		process.stderr.write(picocolorsFork.red(event.target.error.toString()) + "\n")
 		process.exit(1)
 	})
 	.run()

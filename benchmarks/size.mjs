@@ -3,7 +3,8 @@ import { buildSync } from "esbuild"
 import { dirname } from "node:path"
 
 console.table({
-  picocolors: build(`export { default as picocolors } from "../picocolors.js"`),
+  "picocolors-fork": build(`export { default as picocolors } from "../picocolors.js"`),
+  "picocolors-upstream": build(`export { default as picocolors } from "picocolors-upstream"`),
   colorette: build(`export * as colorette from "colorette"`),
   "chalk v4": build(`export { default as chalk } from "chalk4"`),
   "chalk v5": build(`export * as chalk from "chalk5"`),

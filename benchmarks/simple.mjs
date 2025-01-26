@@ -8,7 +8,8 @@ import chalk from "chalk4"
 import chalk5 from "chalk5"
 import ansi from "ansi-colors"
 import cliColor from "cli-color"
-import picocolors from "../picocolors.js"
+import picocolorsFork from "../picocolors.js"
+import picocolorsUpstream from "picocolors-upstream"
 import * as nanocolors from "nanocolors"
 import * as yoctocolors from "yoctocolors"
 
@@ -18,7 +19,8 @@ console.log(chalk.green("chalk"))
 console.log(chalk5.green("chalk5"))
 console.log(ansi.green("ansi"))
 console.log(cliColor.green("cliColor"))
-console.log(picocolors.green("picocolors"))
+console.log(picocolorsFork.green("picocolors-fork"))
+console.log(picocolorsUpstream.green("picocolors-upstream"))
 console.log(nanocolors.green("nanocolors"))
 console.log(yoctocolors.green("yoctocolors"))
 
@@ -50,8 +52,11 @@ boxplot(() => {
 	bench("yoctocolors", () => {
 		return yoctocolors.red("Add plugin to use time limit")
 	})
-	bench("picocolors", () => {
-		return picocolors.red("Add plugin to use time limit")
+	bench("picocolors-upstream", () => {
+		return picocolorsUpstream.red("Add plugin to use time limit")
+	})
+	bench("picocolors-fork", () => {
+		return picocolorsFork.red("Add plugin to use time limit")
 	})
 })
 

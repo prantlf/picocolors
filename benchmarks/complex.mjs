@@ -8,7 +8,8 @@ import chalk from "chalk4"
 import chalk5 from "chalk5"
 import ansi from "ansi-colors"
 import cliColor from "cli-color"
-import picocolors from "../picocolors.js"
+import picocolorsFork from "../picocolors.js"
+import picocolorsUpstream from "picocolors-upstream"
 import * as nanocolors from "nanocolors"
 import * as yoctocolors from "yoctocolors"
 
@@ -139,17 +140,32 @@ summary(() => {
 	)
 
 	bench(
-		"picocolors",
+		"picocolors-upstream",
 		() =>
-			picocolors.red(".") +
-			picocolors.yellow(".") +
-			picocolors.green(".") +
-			picocolors.bgRed(picocolors.black(" ERROR ")) +
-			picocolors.red(
+			picocolorsUpstream.red(".") +
+			picocolorsUpstream.yellow(".") +
+			picocolorsUpstream.green(".") +
+			picocolorsUpstream.bgRed(picocolorsUpstream.black(" ERROR ")) +
+			picocolorsUpstream.red(
 				" Add plugin " +
-					picocolors.yellow("name") +
+					picocolorsUpstream.yellow("name") +
 					" to use time limit with " +
-					picocolors.yellow(`${++index}`)
+					picocolorsUpstream.yellow(`${++index}`)
+			)
+	)
+
+	bench(
+		"picocolors-fork",
+		() =>
+			picocolorsFork.red(".") +
+			picocolorsFork.yellow(".") +
+			picocolorsFork.green(".") +
+			picocolorsFork.bgRed(picocolorsFork.black(" ERROR ")) +
+			picocolorsFork.red(
+				" Add plugin " +
+					picocolorsFork.yellow("name") +
+					" to use time limit with " +
+					picocolorsFork.yellow(`${++index}`)
 			)
 	)
 })

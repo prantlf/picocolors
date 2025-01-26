@@ -18,7 +18,7 @@
   "description": "The tiniest and the fastest library for terminal output formatting with ANSI colors",
   "scripts": {
     "build": "node build-esm.mjs",
-    "install-benchmarks": "npm install --no-save esbuild \"benchmark@^2\" \"mitata@^1\" \"ansi-colors@^4\" \"cli-color@^2\" chalk4@\"npm:chalk@^4\" chalk5@\"npm:chalk@^5\" \"colorette@^2\" \"kleur@^4\" \"nanocolors@^0\" \"yoctocolors@^2\"",
+    "install-benchmarks": "npm install --no-save esbuild \"benchmark@^2\" \"mitata@^1\" picocolors-upstream@\"npm:picocolors@^1\"  \"ansi-colors@^4\" \"cli-color@^2\" chalk4@\"npm:chalk@^4\" chalk5@\"npm:chalk@^5\" \"colorette@^2\" \"kleur@^4\" \"nanocolors@^0\" \"yoctocolors@^2\"",
     "build-benchmarks": "node print-chalk5.mjs | esbuild --outfile=benchmarks/chalk5.js --bundle --platform=node && node print-yoctocolors.mjs | esbuild --outfile=benchmarks/yoctocolors.js --bundle --platform=node && node cleanup-yoctocolors.mjs",
     "pretest": "tsc --module esnext tests/types.mts",
     "test": "node tests/test.js && node tests/esm.mjs && node tests/types.mjs"

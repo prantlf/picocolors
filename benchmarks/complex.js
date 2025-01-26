@@ -13,7 +13,8 @@ let chalk5 = require("chalk5").default
 let chalk4 = require("chalk4")
 let ansi = require("ansi-colors")
 let cliColor = require("cli-color")
-let picocolors = require("../picocolors.js")
+let picocolorsFork = require("../picocolors.js")
+let picocolorsUpstream = require("picocolors-upstream")
 let nanocolors = require("nanocolors")
 let yoctocolors = require("./yoctocolors")
 
@@ -134,27 +135,40 @@ suite
 					yoctocolors.yellow(++index)
 			)
 	})
-	.add("picocolors", () => {
+	.add("picocolors-upstream", () => {
 		out =
-			picocolors.red(".") +
-			picocolors.yellow(".") +
-			picocolors.green(".") +
-			picocolors.bgRed(picocolors.black(" ERROR ")) +
-			picocolors.red(
+			picocolorsUpstream.red(".") +
+			picocolorsUpstream.yellow(".") +
+			picocolorsUpstream.green(".") +
+			picocolorsUpstream.bgRed(picocolorsUpstream.black(" ERROR ")) +
+			picocolorsUpstream.red(
 				" Add plugin " +
-					picocolors.yellow("name") +
+					picocolorsUpstream.yellow("name") +
 					" to use time limit with " +
-					picocolors.yellow(`${++index}`)
+					picocolorsUpstream.yellow(`${++index}`)
+			)
+	})
+	.add("picocolors-fork", () => {
+		out =
+			picocolorsFork.red(".") +
+			picocolorsFork.yellow(".") +
+			picocolorsFork.green(".") +
+			picocolorsFork.bgRed(picocolorsFork.black(" ERROR ")) +
+			picocolorsFork.red(
+				" Add plugin " +
+					picocolorsFork.yellow("name") +
+					" to use time limit with " +
+					picocolorsFork.yellow(`${++index}`)
 			)
 	})
 	.on("cycle", event => {
-		let prefix = event.target.name === "picocolors" ? "+ " : "  "
+		let prefix = event.target.name === "picocolors-fork" ? "+ " : "  "
 		let name = event.target.name.padEnd("kleur/colors  ".length)
-		let hz = formatNumber(event.target.hz.toFixed(0)).padStart(10)
-		process.stdout.write(`${prefix}${name}${picocolors.bold(hz)} ops/sec\n`)
+		let hz = formatNumber(event.target.hz.toFixed(0)).padStart(20)
+		process.stdout.write(`${prefix}${name}${picocolorsFork.bold(hz)} ops/sec\n`)
 	})
 	.on("error", event => {
-		process.stderr.write(picocolors.red(event.target.error.toString()) + "\n")
+		process.stderr.write(picocolorsFork.red(event.target.error.toString()) + "\n")
 		process.exit(1)
 	})
 	.run()

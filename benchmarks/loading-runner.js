@@ -43,5 +43,9 @@ let yoctocolors = require("./yoctocolors")
 showTime("yoctocolors")
 
 before = performance.now()
-let picocolors = require("../picocolors.js")
-showTime("picocolors")
+let picocolorsUpstream = require("picocolors-upstream")
+showTime("picocolors-upstream")
+
+before = performance.now()
+let picocolorsFork = require("../picocolors.js")
+showTime("picocolors-fork")
