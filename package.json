@@ -1,6 +1,6 @@
 {
-  "name": "picocolors",
-  "version": "1.1.1",
+  "name": "@prantlf/picocolors",
+  "version": "1.2.0",
   "main": "./picocolors.js",
   "module": "./picocolors.mjs",
   "types": "./picocolors.d.ts",
@@ -35,7 +35,10 @@
     "console"
   ],
   "author": "Alexey Raspopov",
-  "repository": "alexeyraspopov/picocolors",
+  "contributors": [
+    "Ferdinand Prantl"
+  ],
+  "repository": "prantlf/picocolors",
   "license": "ISC",
   "devDependencies": {
     "clean-publish": "^5.2.2",

@@ -1,0 +1,15 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true
+  },
+  "search.exclude": {
+    "benchmarks/chalk5.js": true,
+    "benchmarks/yoctocolors.js": true,
+    "**/package-lock.json": true,
+    "picocolors.mjs": true,
+    "tests/types.mjs": true
+  }
+}

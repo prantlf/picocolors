@@ -1,9 +1,9 @@
-# picocolors
+# @prantlf/picocolors
 
 The tiniest and the fastest library for terminal output formatting with ANSI colors.
 
 ```javascript
-import pc from "picocolors"
+import pc from "@prantlf/picocolors"
 
 console.log(
   pc.green(`How are ${pc.italic(`you`)} doing?`)
@@ -317,7 +317,7 @@ summary
 Picocolors provides an object which includes a variety of text coloring and formatting functions:
 
 ```javascript
-import pc from "picocolors"
+import pc from "@prantlf/picocolors"
 ```
 
 The object includes following coloring functions: `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`, `gray`.
@@ -349,7 +349,7 @@ The library provides additional utilities to ensure the best results for the tas
 - `isColorSupported` — boolean, explicitly tells whether or not the colors or formatting appear on the screen
 
   ```javascript
-  import pc from "picocolors"
+  import pc from "@prantlf/picocolors"
 
   if (pc.isColorSupported) {
     console.log("Yay! This script can use colors and formatters")
@@ -359,7 +359,7 @@ The library provides additional utilities to ensure the best results for the tas
 - `createColors(enabled)` — a function that returns a new API object with manually defined color support configuration
 
   ```javascript
-  import pc from "picocolors"
+  import pc from "@prantlf/picocolors"
 
   let { red, bgWhite } = pc.createColors(options.enableColors)
   ```
@@ -367,7 +367,7 @@ The library provides additional utilities to ensure the best results for the tas
 All functions from the exported object are available as named exports too:
 
 ```javascript
-import { red, green, bold, reset } from "picocolors"
+import { red, green, bold, reset } from "@prantlf/picocolors"
 ```
 
 ## Replacing `chalk`
@@ -376,7 +376,7 @@ import { red, green, bold, reset } from "picocolors"
 
    ```diff
    - import chalk from 'chalk'
-   + import pico from 'picocolors'
+   + import pico from '@prantlf/picocolors'
    ```
 
 2. Replace variable:

@@ -1,5 +1,7 @@
+.DS_Store
 benchmarks/chalk5.js
 benchmarks/yoctocolors.js
 node_modules
+package-lock.json
 picocolors.mjs
 tests/types.mjs

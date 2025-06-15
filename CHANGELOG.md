@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.0](https://github.com/prantlf/picocolors/releases/tag/v1.2.0)
+
+- Support named exports in the ESM mode ([`fadeb10`](https://github.com/alexeyraspopov/picocolors/commit/fadeb104c862a5b94fc27864a714a9e769bc8736))
+- Support named exports in TypeScript projects ([`314c773`](https://github.com/alexeyraspopov/picocolors/commit/314c773a01bfb34d0c5a5b8411e25cbe3854212f))
+
 ## [v1.1.1](https://github.com/alexeyraspopov/picocolors/releases/tag/v1.1.1)
 
 - Moved TypeScript declarations to a `d.ts` file ([#82](https://github.com/alexeyraspopov/picocolors/pull/82))
