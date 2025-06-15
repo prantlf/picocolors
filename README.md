@@ -39,19 +39,34 @@ Credits go to the following projects:
 
 ## Benchmarks
 
+Versions of the benchmarked libraries:
+
+```diff
+$ node ./benchmarks/versions.js
+  ansi-colors          4.1.3
+  chalk4               4.1.2
+  chalk5               5.4.1
+  cli-color            2.0.4
+  colorette            2.0.20
+  kleur                4.1.5
+  nanocolors           0.2.13
+  yoctocolors          2.1.1
+  picocolors-upstream  1.1.1
+  picocolors-fork      1.1.1
+```
+
 The space in node_modules including sub-dependencies (packagephobia):
 
 ```diff
-$ node ./benchmarks/size.js
-  chalk@5.3.0  43 kB
-  chalk@4.1.2 101 kB
-  cli-color   796 kB
-  ansi-colors  27 kB
-  kleur        20 kB
-  colorette    17 kB
-  nanocolors   15 kB
-  yoctocolors   7 kB
-+ picocolors    7 kB
+chalk5        43.2  kB
+chalk4       101    kB
+cli-color    754    kB
+ansi-colors   26.5  kB
+kleur         19.8  kB
+colorette     16.6  kB
+nanocolors    14.6  kB
+yoctocolors    9.97 kB
+picocolors     6.22 kB
 ```
 
 The space in node_modules including sub-dependencies (bundling the default export):
@@ -62,7 +77,7 @@ $ node ./benchmarks/size.mjs
 │ (index)             │ size (KB) │
 ├─────────────────────┼───────────┤
 │ picocolors-fork     │ 4.88      │
-│ picocolors-upstream │ 4.95      │
+│ picocolors-upstream │ 4.96      │
 │ colorette           │ 6.04      │
 │ chalk v4            │ 49.22     │
 │ chalk v5            │ 16.71     │
@@ -79,51 +94,53 @@ Library loading time (CJS):
 
 ```diff
 $ node ./benchmarks/loading.js
-  chalk5                5.492 ms
-  chalk4                5.331 ms
-  cli-color            33.309 ms
-  ansi-colors           1.503 ms
-  kleur                 2.062 ms
-  kleur/colors          1.039 ms
-  colorette             0.959 ms
-  nanocolors            0.741 ms
-  yoctocolors           0.988 ms
-  picocolors-upstream   0.586 ms
-+ picocolors-fork       0.416 ms
+Results for CJS:
+  chalk5                6.015 ms
+  chalk4                5.805 ms
+  cli-color            35.608 ms
+  ansi-colors           2.050 ms
+  kleur                 2.248 ms
+  kleur/colors          1.139 ms
+  colorette             1.045 ms
+  nanocolors            0.788 ms
+  yoctocolors           1.097 ms
+  picocolors-upstream   0.636 ms
++ picocolors-fork       0.452 ms
 ```
 
 Library loading time (ESM):
 
 ```diff
 $ node ./benchmarks/loading.js --esm
-  chalk5               10.358 ms
-  chalk4                7.172 ms
-  cli-color            34.826 ms
-  ansi-colors           3.038 ms
-  kleur                 2.145 ms
-  kleur/colors          1.538 ms
-  colorette             1.761 ms
-  nanocolors            1.436 ms
-  yoctocolors           3.170 ms
-  picocolors-upstream   2.465 ms
-+ picocolors-fork       1.623 ms
+Results for ESM:
+  chalk5               11.498 ms
+  chalk4                7.638 ms
+  cli-color            36.701 ms
+  ansi-colors           3.130 ms
+  kleur                 2.342 ms
+  kleur/colors          1.649 ms
+  colorette             1.863 ms
+  nanocolors            1.505 ms
+  yoctocolors           3.176 ms
+  picocolors-upstream   2.216 ms
++ picocolors-fork       1.905 ms
 ```
 
 Benchmark for simple use case (CJS):
 
 ```diff
 $ node ./benchmarks/simple.js
-  chalk5               18,187,932 ops/sec
-  chalk4               18,228,807 ops/sec
-  cli-color             1,142,998 ops/sec
-  ansi-colors           5,732,734 ops/sec
-  kleur                 18,585,115 ops/sec
-  kleur/colors          30,352,315 ops/sec
-  colorette             29,811,941 ops/sec
-  nanocolors            30,676,556 ops/sec
-  yoctocolors           31,766,652 ops/sec
-  picocolors-upstream   29,399,306 ops/sec
-+ picocolors-fork       30,316,402 ops/sec
+  chalk5                  18,988,584 ops/sec
+  chalk4                  18,656,938 ops/sec
+  cli-color                1,188,258 ops/sec
+  ansi-colors              5,876,623 ops/sec
+  kleur                   19,098,109 ops/sec
+  kleur/colors            30,684,290 ops/sec
+  colorette               31,200,269 ops/sec
+  nanocolors              32,155,545 ops/sec
+  yoctocolors             32,527,908 ops/sec
+  picocolors-upstream     32,761,293 ops/sec
++ picocolors-fork         32,623,263 ops/sec
 ```
 
 Benchmark for simple use case (ESM):
@@ -132,56 +149,103 @@ Benchmark for simple use case (ESM):
 $ node ./benchmarks/simple.mjs --expose-gc
 benchmark                   avg (min … max) p75 / p99    (min … top 1%)
 ------------------------------------------- -------------------------------
-chalk v4                      29.00 ns/iter  28.98 ns  █
-                     (25.23 ns … 288.35 ns)  71.23 ns ███
-                    (  7.81 kb … 170.61 kb)  32.69 kb ███▂▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-chalk v5                      17.28 ns/iter  17.39 ns   █
-                      (15.06 ns … 69.08 ns)  37.75 ns  ▃█
-                    ( 14.12 kb … 171.35 kb)  16.64 kb ███▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-cli-color                    751.87 ns/iter 771.09 ns   ▇     ▄█▂█
-                    (696.25 ns … 866.38 ns) 835.88 ns  ██▆█ ▂▇████
-                    (413.05 kb … 747.26 kb) 566.68 kb ▄████▇████████▇▂▅▆▅▂▃
-ansi-colors                  151.85 ns/iter 155.22 ns  ▃  █▃
-                    (134.69 ns … 329.41 ns) 208.72 ns ▆█▄███
-                    ( 19.42 kb … 355.40 kb) 255.98 kb ███████▆█▃▂▂▂▂▂▂▂▂▁▂▁
-kleur                         32.16 ns/iter  32.35 ns  ▆█
-                     (28.22 ns … 183.91 ns)  68.63 ns  ██
-                    ( 14.12 kb … 116.25 kb)  54.36 kb ███▅▂▁▁▂▁▁▁▁▁▁▁▁▁▁▁▁▁
-kleur/colors                  19.22 ns/iter  19.87 ns     ▃█▃
-                      (16.36 ns … 76.38 ns)  28.68 ns  ▂▅▄███
-                    ( 19.53  b …  88.20 kb)  87.72  b ▁██████▆▂▁▁▂▁▁▁▁▁▁▁▁▁
-colorette                      5.02 ns/iter   5.09 ns      █▆
-                       (4.18 ns … 31.51 ns)   7.10 ns     ▆██▃
-                    ( 99.61  b … 100.98 kb) 117.87  b ▁▃▅▇████▄▂▁▁▁▁▁▁▁▁▁▁▁
-nanocolors                     4.99 ns/iter   5.07 ns    ▇█
-                       (4.32 ns … 41.32 ns)   8.12 ns  ████▂
-                    ( 19.53  b …  88.20 kb)  37.00  b ▁█████▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-yoctocolors                    4.84 ns/iter   4.97 ns  ▆  █▇
-                       (4.22 ns … 25.10 ns)   7.28 ns  █▇███▅
-                    (107.42  b …  77.49 kb) 118.51  b ▄██████▃▁▁▁▁▁▁▁▁▁▁▁▁▁
-picocolors-upstream            5.25 ns/iter   5.28 ns    █▄
-                       (4.54 ns … 47.79 ns)   8.30 ns    ██
-                    ( 99.61  b …  89.13 kb) 115.50  b ▃▅▇███▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-picocolors-fork                5.21 ns/iter   5.31 ns    █
-                       (4.45 ns … 40.64 ns)   9.28 ns  ▇▅██
-                    (103.52  b …  88.20 kb) 122.59  b ▇████▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+chalk v4                      26.26 ns/iter  25.25 ns █
+                     (23.90 ns … 108.38 ns)  52.59 ns █▅
+                    (  5.04  b … 170.63  b)  32.67  b ██▃▂▁▁▁▁▂▁▁▁▁▁▁▁▁▁▁▁▁
+
+chalk v5                      16.88 ns/iter  16.76 ns █▆
+                     (14.92 ns … 104.22 ns)  43.37 ns ██
+                    ( 16.11  b … 171.38  b)  16.63  b ██▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+cli-color                    780.55 ns/iter 799.99 ns   ▄   █ ▃
+                    (721.61 ns … 897.92 ns) 878.02 ns ▅▅█▂▄▇█▇█▆▄
+                    (498.47  b … 719.38  b) 566.54  b █████████████▃█▃▆▇▄▆▃
+
+ansi-colors                  149.70 ns/iter 151.07 ns █
+                    (138.09 ns … 247.25 ns) 215.97 ns █
+                    ( 19.43  b … 400.15  b) 256.12  b ██▇▆▃▂▃▂▁▂▂▂▂▂▂▂▁▁▁▁▁
+
+kleur                         29.94 ns/iter  28.66 ns █
+                     (27.07 ns … 119.37 ns)  70.09 ns █▇
+                    ( 22.00  b … 173.11  b)  54.36  b ██▃▁▁▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+kleur/colors                  16.37 ns/iter  16.20 ns █▂
+                      (14.95 ns … 43.16 ns)  30.55 ns ██
+                    (  0.02  b …  88.20  b)   0.08  b ███▄▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+colorette                      4.42 ns/iter   4.39 ns  █
+                       (3.84 ns … 35.39 ns)  11.35 ns ▄█▂
+                    (  0.11  b … 100.99  b)   0.12  b ███▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+nanocolors                     4.57 ns/iter   4.49 ns  █
+                       (3.88 ns … 41.16 ns)  12.01 ns  █
+                    (  0.02  b …  88.20  b)   0.04  b ▅██▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+yoctocolors                    4.31 ns/iter   4.26 ns ▂█
+                       (3.84 ns … 38.37 ns)  11.29 ns ██
+                    (  0.10  b …  77.49  b)   0.11  b ██▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+picocolors-upstream            4.79 ns/iter   4.85 ns   █
+                       (4.07 ns … 37.39 ns)  10.01 ns  ▇█▃
+                    (  0.02  b …  89.52  b)   0.04  b ▆███▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+picocolors-fork                4.72 ns/iter   4.80 ns  █
+                       (4.17 ns … 33.35 ns)  10.99 ns ▆█▇
+                    (  0.02  b …  88.20  b)   0.03  b ███▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+                             ┌                                            ┐
+                              ┬ ╷
+                    chalk v4  │─┤
+                              ┴ ╵
+                              ┬╷
+                    chalk v5  │┤
+                              ┴╵
+                                                                  ╷┌─┬┐   ╷
+                   cli-color                                      ├┤ │├───┤
+                                                                  ╵└─┴┘   ╵
+                                    ┌┬  ╷
+                 ansi-colors        ││──┤
+                                    └┴  ╵
+                              ┬ ╷
+                       kleur  │─┤
+                              ┴ ╵
+                              ┬
+                kleur/colors  │
+                              ┴
+                             ┬
+                   colorette │
+                             ┴
+                             ┬
+                  nanocolors │
+                             ┴
+                             ┬
+                 yoctocolors │
+                             ┴
+                             ┬
+         picocolors-upstream │
+                             ┴
+                             ┬
+             picocolors-fork │
+                             ┴
+                             └                                            ┘
+                             3.84 ns          440.93 ns           878.02 ns
 ```
 
 Benchmark for complex use cases (CJS):
 
 ```diff
 $ node ./benchmarks/complex.js
-  chalk5               1,076,425 ops/sec
-  chalk4               1,097,229 ops/sec
-  cli-color              129,382 ops/sec
-  ansi-colors            536,387 ops/sec
-  kleur                1,183,135 ops/sec
-  kleur/colors         1,416,477 ops/sec
-  colorette            1,680,012 ops/sec
-  nanocolors           1,602,355 ops/sec
-  yoctocolors          1,239,943 ops/sec
-  picocolors-upstream  2,632,381 ops/sec
-+ picocolors-fork      2,667,458 ops/sec
+  chalk5                     879,617 ops/sec
+  chalk4                     931,989 ops/sec
+  cli-color                  104,383 ops/sec
+  ansi-colors                478,049 ops/sec
+  kleur                    1,124,774 ops/sec
+  kleur/colors             1,352,289 ops/sec
+  colorette                1,702,615 ops/sec
+  nanocolors               1,566,980 ops/sec
+  yoctocolors              1,167,530 ops/sec
+  picocolors-upstream      2,703,219 ops/sec
++ picocolors-fork          2,696,878 ops/sec
 ```
 
 Benchmark for complex use cases (ESM):
@@ -190,44 +254,67 @@ Benchmark for complex use cases (ESM):
 $ node ./benchmarks/complex.mjs --expose-gc
 benchmark                   avg (min … max) p75 / p99    (min … top 1%)
 ------------------------------------------- -------------------------------
-chalk v4                     953.57 ns/iter   1.11 µs   █▄▃
-                      (746.17 ns … 1.48 µs)   1.41 µs  ▄███▆     ▃▄
-                    (  1.00 mb …   1.32 mb)   1.16 mb ▃█████▄▁▁▂▆███▆▂▂▂▂▁▃
-chalk v5                     900.44 ns/iter   1.07 µs    ██
-                      (743.27 ns … 1.18 µs)   1.17 µs  ▄███▆▃         █▄
-                    (  1.16 mb …   1.33 mb)   1.17 mb ▇██████▅▁▁▁▁▂▄▃▃███▃▃
-yoctocolors                  578.35 ns/iter 738.60 ns    █▃
-                    (450.84 ns … 827.03 ns) 817.42 ns   ▄██
-                    (836.27 kb …   1.19 mb)   1.01 mb ▃▆███▆▁▁▁▁▁▁▁▁▁▁▃▄█▆▅
-cli-color                      8.20 µs/iter   8.20 µs     █▇
-                      (6.58 µs … 697.57 µs)  13.01 µs   ▂███
-                    (128.00 kb … 152.63 mb)   5.47 mb ▁▇█████▃▂▁▁▁▁▁▁▁▁▁▁▁▁
-ansi-colors                    2.10 µs/iter   2.29 µs         █
-                        (1.61 µs … 2.52 µs)   2.51 µs         █  ▅ ▂▂▇
-                    (  2.54 mb …   2.54 mb)   2.54 mb ▃▅▆▃▃█▅▆█▅▅█▆████▅█▆▃
-kleur                        832.37 ns/iter 982.67 ns      █
-                      (648.86 ns … 1.11 µs)   1.10 µs    ▅▅█▂▄
-                    (878.88 kb …   1.18 mb)   1.18 mb ▄▇██████▅▁▁▂▂▄▂▆██▅▇▃
-kleur/colors                 701.23 ns/iter 836.12 ns    ▂██▇
-                    (542.03 ns … 986.05 ns) 961.82 ns  ▅█████▃           ▂
-                    (787.79 kb …   1.32 mb)   1.04 mb ▃███████▁▁▁▁▁▂▅█▇███▃
-colorette                    739.51 ns/iter 654.00 ns   ▄██
-                      (538.00 ns … 1.20 ms)   1.06 µs  ▆███▇
-                    (  1.13 mb … 129.13 mb)   1.44 mb ▂█████▆▃▂▂▂▁▁▁▁▁▁▁▁▁▁
-nanocolors                   596.61 ns/iter 727.93 ns    █▂
-                    (474.47 ns … 869.11 ns) 850.22 ns    ██
-                    (  1.01 mb …   1.22 mb)   1.01 mb ▆████▇▃▁▁▁▁▁▁▂▄▄▅█▄▂▁
-picocolors-upstream          348.88 ns/iter 322.55 ns   █▇
-                    (268.82 ns … 659.01 ns) 613.70 ns  ▆██
-                    (651.99 kb … 849.73 kb) 696.71 kb ████▅▁▁▁▁▁▁▁▁▁▂▂▄▆▄▁▁
-picocolors-fork              349.62 ns/iter 329.41 ns  ▃▆█
-                    (269.29 ns … 652.98 ns) 612.54 ns ▄███
-                    (659.99 kb … 900.36 kb) 696.71 kb ████▆▂▂▁▁▁▁▁▁▁▂▄▄▅▅▂▁
+chalk v4                     835.16 ns/iter 952.52 ns  █▆
+                      (685.54 ns … 1.45 µs)   1.44 µs ███    ▃▂
+                    (  1.00 kb …   1.16 kb)   1.16 kb ████▅▃▂██▇▄▃▂▂▁▁▁▁▂▁▂
+
+chalk v5                     822.73 ns/iter 969.47 ns  ▂ █
+                      (684.30 ns … 1.09 µs)   1.05 µs  █ ██           ▂▂
+                    (  1.00 kb …   1.17 kb)   1.16 kb ▇████▅▃▇▃▂▂▁▁▂▄▃███▃▃
+
+yoctocolors                  533.96 ns/iter 663.93 ns  █
+                    (426.14 ns … 853.19 ns) 797.52 ns ▂█▂ ▂
+                    (911.37  b …   1.19 kb)   1.01 kb ███▆█▇▄▁▂▁▁▁▁▇▆▅▄▃▂▂▂
+
+cli-color                      7.78 µs/iter   7.28 µs  █
+                      (6.73 µs … 887.65 µs)  22.30 µs ▇█
+                    (128.00  b … 340.25 kb)   5.44 kb ██▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+
+ansi-colors                    2.12 µs/iter   2.21 µs           ▃      █
+                        (1.70 µs … 2.92 µs)   2.50 µs     ▇█▇  ▂███▇   █
+                    (  2.54 kb …   2.54 kb)   2.54 kb ▃▁▆▃███▆▆█████▃▃▁█▆▆▃
+
+kleur                        766.70 ns/iter 908.48 ns   █▇
+                      (632.74 ns … 1.07 µs)   1.04 µs  ▄██▂          ▅
+                    (878.86  b …   1.48 kb)   1.18 kb █████▄▆▃▂▁▁▁▃▇██▃▂▄▂▂
+
+kleur/colors                 677.34 ns/iter 808.15 ns  █ ▆
+                      (549.95 ns … 1.03 µs) 961.03 ns  █▄█▅           ▂
+                    (  1.04 kb …   1.33 kb)   1.04 kb ▃████▄▆▁▁▁▁▁▃▄▃▇█▄▂▃▁
+
+colorette                    579.77 ns/iter 698.98 ns █▆
+                    (458.08 ns … 917.82 ns) 907.11 ns ███▂▅
+                    (  1.04 kb …   1.25 kb)   1.04 kb █████▅▃█▁▁▁▆██▃▇▄▁▂▂▂
+
+nanocolors                   587.19 ns/iter 723.75 ns █
+                    (486.68 ns … 906.54 ns) 862.12 ns █▇▅
+                    (911.09  b …   1.22 kb)   1.01 kb ███▆▇▆▂▂▁▁▁▁▂▆▆▅▄▂▃▃▂
+
+picocolors-upstream          351.08 ns/iter 333.01 ns █
+                    (273.63 ns … 718.30 ns) 707.22 ns █▅▆▄
+                    (443.09  b … 837.21  b) 695.82  b ████▂▁▁▁▁▁▁▅▃▃▂▁▂▁▁▂▂
+
+picocolors-fork              342.98 ns/iter 332.60 ns █▂
+                    (271.43 ns … 697.20 ns) 684.01 ns ██▃
+                    (561.47  b … 900.37  b) 696.04  b ███▇▂▁▁▁▁▁▁▂▅▄▂▂▁▁▁▁▁
+
+summary
+  picocolors-fork
+   1.02x faster than picocolors-upstream
+   1.56x faster than yoctocolors
+   1.69x faster than colorette
+   1.71x faster than nanocolors
+   1.97x faster than kleur/colors
+   2.24x faster than kleur
+   2.4x faster than chalk v5
+   2.44x faster than chalk v4
+   6.18x faster than ansi-colors
+   22.69x faster than cli-color
 ```
 
 ## Usage
 
-Picocolors provides an object which includes a variety of text coloring and formatting functions
+Picocolors provides an object which includes a variety of text coloring and formatting functions:
 
 ```javascript
 import pc from "picocolors"
@@ -276,6 +363,12 @@ The library provides additional utilities to ensure the best results for the tas
 
   let { red, bgWhite } = pc.createColors(options.enableColors)
   ```
+
+All functions from the exported object are available as named exports too:
+
+```javascript
+import { red, green, bold, reset } from "picocolors"
+```
 
 ## Replacing `chalk`
 
