@@ -1,0 +1,69 @@
+name: Test and Release
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - '**/*.md'
+      - LICENSE
+  pull_request:
+
+jobs:
+  modern:
+    name: Node v${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 22
+          - 20
+          - 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm i --no-audit --no-progress --no-fund
+      - run: npm run build
+      - run: npm test
+
+  legacy:
+    name: Node v${{ matrix.node-version }} (Legacy)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 16
+          - 14
+          - 12
+          - 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm i --no-audit --no-progress --no-fund
+      - run: node tests/test.js
+
+  release:
+    if: ${{ github.ref_name == 'master' }}
+    needs:
+      - modern
+      - legacy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: latest
+        - run: npm i --no-audit --no-progress --no-fund
+        - run: npm run build
+      - uses: prantlf/publish-release-action@v1
+        with:
+          no-archives: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
